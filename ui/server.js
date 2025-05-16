@@ -335,10 +335,10 @@ app.get('/gameplayed', async (req, res) => {
         `SELECT playerID, name FROM NBAPlayers;`
       );
   
-      res.render('gamePlayed', { title: 'Game Played', stats, games, players });
+      res.render('gamePlayed', { title: 'Games Played', stats, games, players });
     } catch (err) {
       console.error(err);
-      res.status(500).send('Error loading GamePlayed');
+      res.status(500).send('Error loading Games Played');
     }
   });
   
@@ -450,7 +450,7 @@ app.get('/waivers', async (req, res) => {
     const [rows] = await db.query(
       'SELECT transactionID, teamID, playerID, transactionType, transactionDate FROM WaiverTransactions;'
     );
-    res.render('waiverTransactions', { title: 'Waivers', waivers: rows });
+    res.render('waiverTransactions', { title: 'Waiver Transactions', waivers: rows });
   } catch (err) {
     console.error(err);
     res.status(500).send('Error loading waivers');

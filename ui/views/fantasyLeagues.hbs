@@ -1,7 +1,10 @@
 <h1>Fantasy Leagues</h1>
 
 <table class="table table-bordered">
-  <thead><tr><th>leagueID</th><th>name</th></tr></thead>
+  <thead><tr>
+    <th>League ID</th>
+    <th>Name</th>
+  </tr></thead>
   <tbody>
   {{#each leagues}}
     <tr><td>{{leagueID}}</td><td>{{name}}</td></tr>
@@ -12,7 +15,7 @@
 <h2>Add Fantasy Leagues</h2>
 <form method="POST" action="/leagues/add">
   <div class="mb-2">
-    <label class="form-label">name</label>
+    <label class="form-label">Name</label>
     <input name="name" type="text" class="form-control">
   </div>
   <button class="btn btn-primary">Submit</button>

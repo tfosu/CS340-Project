@@ -1,7 +1,12 @@
 <h1>Games</h1>
 
 <table class="table table-bordered">
-  <thead><tr><th>gameID</th><th>date</th><th>homeTeam</th><th>awayTeam</th></tr></thead>
+  <thead><tr>
+    <th>Game ID</th>
+    <th>Date</th>
+    <th>Home Team</th>
+    <th>Away Team</th>
+  </tr></thead>
   <tbody>
   {{#each games}}
     <tr><td>{{gameID}}</td><td>{{date}}</td><td>{{homeTeam}}</td><td>{{awayTeam}}</td></tr>
@@ -9,24 +14,24 @@
   </tbody>
 </table>
 
-<h2>Add games</h2>
+<h2>Add Game</h2>
 <form method="POST" action="/games/add">
   <div class="mb-2">
-    <label class="form-label">date</label>
+    <label class="form-label">Date</label>
     <input name="date" type="date" class="form-control">
   </div>
   <div class="mb-2">
-    <label class="form-label">homeTeam</label>
+    <label class="form-label">Home Team</label>
     <input name="homeTeam" type="text" class="form-control">
   </div>
   <div class="mb-2">
-    <label class="form-label">awayTeam</label>
+    <label class="form-label">Away Team</label>
     <input name="awayTeam" type="text" class="form-control">
   </div>
   <button class="btn btn-primary">Submit</button>
 </form>
 
-<h2 class="mt-4">Update games</h2>
+<h2 class="mt-4">Update Game</h2>
 <form method="POST" action="/games/update">
   <div class="row g-2">
     <div class="col"><input name="gameID" placeholder="gameID" class="form-control"></div>
@@ -35,7 +40,7 @@
   </div>
 </form>
 
-<h2 class="mt-4">Delete games</h2>
+<h2 class="mt-4">Delete Game</h2>
 <form method="POST" action="/games/delete">
   <div class="row g-2">
     <div class="col"><input name="gameID" placeholder="gameID" class="form-control"></div>

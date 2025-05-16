@@ -1,7 +1,24 @@
 <h1>Players</h1>
 
 <table class="table table-bordered">
-  <thead><tr><th>playerID</th><th>name</th><th>points</th><th>threes</th><th>assists</th><th>blocks</th><th>steals</th><th>fgm</th><th>fga</th><th>ftm</th><th>fta</th><th>rebounds</th><th>turnovers</th><th>gamesPlayed</th><th>nbaTeam</th><th>position</th></tr></thead>
+  <thead><tr>
+    <th>Player ID</th>
+    <th>Name</th>
+    <th>Points</th>
+    <th>Three Pointers</th>
+    <th>Assists</th>
+    <th>Blocks</th>
+    <th>Steals</th>
+    <th>Field Goals Made</th>
+    <th>Field Goals Attempted</th>
+    <th>Free Throws Made</th>
+    <th>Free Throws Attempted</th>
+    <th>Rebounds</th>
+    <th>Turnovers</th>
+    <th>Games Played</th>
+    <th>NBA Team</th>
+    <th>Position</th>
+  </tr></thead>
   <tbody>
   {{#each players}}
     <tr><td>{{playerID}}</td><td>{{name}}</td><td>{{points}}</td><td>{{threes}}</td><td>{{assists}}</td><td>{{blocks}}</td><td>{{steals}}</td><td>{{fgm}}</td><td>{{fga}}</td><td>{{ftm}}</td><td>{{fta}}</td><td>{{rebounds}}</td><td>{{turnovers}}</td><td>{{gamesPlayed}}</td><td>{{nbaTeam}}</td><td>{{position}}</td></tr>
@@ -9,72 +26,72 @@
   </tbody>
 </table>
 
-<h2>Add Players</h2>
+<h2>Add Player</h2>
 <form method="POST" action="/players/add">
   <div class="mb-2">
-    <label class="form-label">name</label>
+    <label class="form-label">Name</label>
     <input name="name" type="text" class="form-control">
   </div>
   <div class="mb-2">
-    <label class="form-label">points</label>
+    <label class="form-label">Points</label>
     <input name="points" type="text" class="form-control">
   </div>
   <div class="mb-2">
-    <label class="form-label">threes</label>
+    <label class="form-label">Three Pointers</label>
     <input name="threes" type="text" class="form-control">
   </div>
   <div class="mb-2">
-    <label class="form-label">assists</label>
+    <label class="form-label">Assists</label>
     <input name="assists" type="text" class="form-control">
   </div>
   <div class="mb-2">
-    <label class="form-label">blocks</label>
+    <label class="form-label">Blocks</label>
     <input name="blocks" type="text" class="form-control">
   </div>
   <div class="mb-2">
-    <label class="form-label">steals</label>
+    <label class="form-label">Steals</label>
     <input name="steals" type="text" class="form-control">
   </div>
   <div class="mb-2">
-    <label class="form-label">fgm</label>
+    <label class="form-label">Field Goals Made</label>
     <input name="fgm" type="text" class="form-control">
   </div>
   <div class="mb-2">
-    <label class="form-label">fga</label>
+    <label class="form-label">Field Goals Attempted</label>
     <input name="fga" type="text" class="form-control">
   </div>
   <div class="mb-2">
-    <label class="form-label">ftm</label>
+    <label class="form-label">Free Throws Made</label>
     <input name="ftm" type="text" class="form-control">
   </div>
   <div class="mb-2">
-    <label class="form-label">fta</label>
+    <label class="form-label">Free Throws Attempted</label>
     <input name="fta" type="text" class="form-control">
   </div>
   <div class="mb-2">
-    <label class="form-label">rebounds</label>
+    <label class="form-label">Rebounds</label>
     <input name="rebounds" type="text" class="form-control">
   </div>
   <div class="mb-2">
-    <label class="form-label">turnovers</label>
+    <label class="form-label">Turnovers</label>
     <input name="turnovers" type="text" class="form-control">
   </div>
   <div class="mb-2">
-    <label class="form-label">gamesPlayed</label>
+    <label class="form-label">Games Played</label>
     <input name="gamesPlayed" type="text" class="form-control">
   </div>
   <div class="mb-2">
-    <label class="form-label">nbaTeam</label>
+    <label class="form-label">NBA Team</label>
     <input name="nbaTeam" type="text" class="form-control">
   </div>
   <div class="mb-2">
-    <label class="form-label">position</label>
+    <label class="form-label">Position</label>
     <input name="position" type="text" class="form-control">
   </div>
   <button class="btn btn-primary">Submit</button>
 </form>
 
-<h2 class="mt-4">Update players</h2>
+<h2 class="mt-4">Update Player</h2>
 <form method="POST" action="/players/update">
   <div class="row g-2">
     <div class="col"><input name="playerID" placeholder="playerID" class="form-control"></div>
@@ -83,7 +100,7 @@
   </div>
 </form>
 
-<h2 class="mt-4">Delete players</h2>
+<h2 class="mt-4">Delete Player</h2>
 <form method="POST" action="/players/delete">
   <div class="row g-2">
     <div class="col"><input name="playerID" placeholder="playerID" class="form-control"></div>

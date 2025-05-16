@@ -1,7 +1,22 @@
-<h1>gamePlayed</h1>
+<h1>Games Played</h1>
 
 <table class="table table-bordered">
-  <thead><tr><th>id</th><th>gameID</th><th>player name</th><th>points</th><th>threes</th><th>assists</th><th>blocks</th><th>steals</th><th>fgm</th><th>fga</th><th>ftm</th><th>fta</th><th>rebounds</th><th>turnovers</th></tr></thead>
+  <thead><tr>
+    <th>ID</th>
+    <th>Game ID</th>
+    <th>Player Name</th>
+    <th>Points</th>
+    <th>Three Pointers</th>
+    <th>Assists</th>
+    <th>Blocks</th>
+    <th>Steals</th>
+    <th>Field Goals Made</th>
+    <th>Field Goals Attempted</th>
+    <th>Free Throws Made</th>
+    <th>Free Throws Attempted</th>
+    <th>Rebounds</th>
+    <th>Turnovers</th>
+  </tr></thead>
   <tbody>
   {{#each stats}}
     <tr><td>{{id}}</td><td>{{gameID}}</td><td>{{playerName}}</td><td>{{points}}</td><td>{{threes}}</td><td>{{assists}}</td><td>{{blocks}}</td><td>{{steals}}</td><td>{{fgm}}</td><td>{{fga}}</td><td>{{ftm}}</td><td>{{fta}}</td><td>{{rebounds}}</td><td>{{turnovers}}</td></tr>
@@ -9,64 +24,64 @@
   </tbody>
 </table>
 
-<h2>Add gamePlayed</h2>
+<h2>Add Game Stats</h2>
 <form method="POST" action="/gamePlayed/add">
   <div class="mb-2">
-    <label class="form-label">gameID</label>
+    <label class="form-label">Game ID</label>
     <input name="gameID" type="text" class="form-control">
   </div>
   <div class="mb-2">
-    <label class="form-label">playerID</label>
+    <label class="form-label">Player Name</label>
     <input name="player name" type="text" class="form-control">
   </div>
   <div class="mb-2">
-    <label class="form-label">points</label>
+    <label class="form-label">Points</label>
     <input name="points" type="text" class="form-control">
   </div>
   <div class="mb-2">
-    <label class="form-label">threes</label>
+    <label class="form-label">Three Pointers</label>
     <input name="threes" type="text" class="form-control">
   </div>
   <div class="mb-2">
-    <label class="form-label">assists</label>
+    <label class="form-label">Assists</label>
     <input name="assists" type="text" class="form-control">
   </div>
   <div class="mb-2">
-    <label class="form-label">blocks</label>
+    <label class="form-label">Blocks</label>
     <input name="blocks" type="text" class="form-control">
   </div>
   <div class="mb-2">
-    <label class="form-label">steals</label>
+    <label class="form-label">Steals</label>
     <input name="steals" type="text" class="form-control">
   </div>
   <div class="mb-2">
-    <label class="form-label">fgm</label>
+    <label class="form-label">Field Goals Made</label>
     <input name="fgm" type="text" class="form-control">
   </div>
   <div class="mb-2">
-    <label class="form-label">fga</label>
+    <label class="form-label">Field Goals Attempted</label>
     <input name="fga" type="text" class="form-control">
   </div>
   <div class="mb-2">
-    <label class="form-label">ftm</label>
+    <label class="form-label">Free Throws Made</label>
     <input name="ftm" type="text" class="form-control">
   </div>
   <div class="mb-2">
-    <label class="form-label">fta</label>
+    <label class="form-label">Free Throws Attempted</label>
     <input name="fta" type="text" class="form-control">
   </div>
   <div class="mb-2">
-    <label class="form-label">rebounds</label>
+    <label class="form-label">Rebounds</label>
     <input name="rebounds" type="text" class="form-control">
   </div>
   <div class="mb-2">
-    <label class="form-label">turnovers</label>
+    <label class="form-label">Turnovers</label>
     <input name="turnovers" type="text" class="form-control">
   </div>
   <button class="btn btn-primary">Submit</button>
 </form>
 
-<h2 class="mt-4">Update gamePlayed</h2>
+<h2 class="mt-4">Update Game Stats</h2>
 <form method="POST" action="/gamePlayed/update">
   <div class="row g-2">
     <div class="col"><input name="id" placeholder="id" class="form-control"></div>
@@ -75,7 +90,7 @@
   </div>
 </form>
 
-<h2 class="mt-4">Delete gamePlayed</h2>
+<h2 class="mt-4">Delete Game Stats</h2>
 <form method="POST" action="/gamePlayed/delete">
   <div class="row g-2">
     <div class="col"><input name="id" placeholder="id" class="form-control"></div>
