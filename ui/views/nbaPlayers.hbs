@@ -94,9 +94,71 @@
 <h2 class="mt-4">Update Player</h2>
 <form method="POST" action="/players/update">
   <div class="row g-2">
-    <div class="col"><input name="playerID" placeholder="playerID" class="form-control"></div>
-    <div class="col"><input name="name" placeholder="name" class="form-control"></div>
-    <div class="col"><button class="btn btn-warning">Update</button></div>
+    <div class="col">
+      <label class="form-label">Player ID</label>
+      <input name="playerID" placeholder="Player ID" class="form-control" required>
+    </div>
+  </div>
+  <div class="row g-2 mt-2">
+    <div class="col">
+      <label class="form-label">Points</label>
+      <input name="points" type="number" class="form-control" placeholder="Points">
+    </div>
+    <div class="col">
+      <label class="form-label">Three Pointers</label>
+      <input name="threes" type="number" class="form-control" placeholder="Three Pointers">
+    </div>
+    <div class="col">
+      <label class="form-label">Assists</label>
+      <input name="assists" type="number" class="form-control" placeholder="Assists">
+    </div>
+  </div>
+  <div class="row g-2 mt-2">
+    <div class="col">
+      <label class="form-label">Blocks</label>
+      <input name="blocks" type="number" class="form-control" placeholder="Blocks">
+    </div>
+    <div class="col">
+      <label class="form-label">Steals</label>
+      <input name="steals" type="number" class="form-control" placeholder="Steals">
+    </div>
+    <div class="col">
+      <label class="form-label">Field Goals Made</label>
+      <input name="fgm" type="number" class="form-control" placeholder="Field Goals Made">
+    </div>
+  </div>
+  <div class="row g-2 mt-2">
+    <div class="col">
+      <label class="form-label">Field Goals Attempted</label>
+      <input name="fga" type="number" class="form-control" placeholder="Field Goals Attempted">
+    </div>
+    <div class="col">
+      <label class="form-label">Free Throws Made</label>
+      <input name="ftm" type="number" class="form-control" placeholder="Free Throws Made">
+    </div>
+    <div class="col">
+      <label class="form-label">Free Throws Attempted</label>
+      <input name="fta" type="number" class="form-control" placeholder="Free Throws Attempted">
+    </div>
+  </div>
+  <div class="row g-2 mt-2">
+    <div class="col">
+      <label class="form-label">Rebounds</label>
+      <input name="rebounds" type="number" class="form-control" placeholder="Rebounds">
+    </div>
+    <div class="col">
+      <label class="form-label">Turnovers</label>
+      <input name="turnovers" type="number" class="form-control" placeholder="Turnovers">
+    </div>
+    <div class="col">
+      <label class="form-label">Games Played</label>
+      <input name="gamesPlayed" type="number" class="form-control" placeholder="Games Played">
+    </div>
+  </div>
+  <div class="row g-2 mt-2">
+    <div class="col">
+      <button type="submit" class="btn btn-warning">Update Stats</button>
+    </div>
   </div>
 </form>
 

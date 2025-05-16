@@ -225,14 +225,72 @@ app.post('/players/add', async (req, res) => {
 });
 app.post('/players/update', async (req, res) => {
   try {
-    const { playerID, points, threes, assists, blocks, steals, fgm, fga, ftm, fta, rebounds, turnovers } = req.body;
-    await db.query(
-      'UPDATE NBAPlayers SET ' +
-      'points = ?, threes = ?, assists = ?, blocks = ?, steals = ?, fgm = ?, fga = ?, ftm = ?, fta = ?, rebounds = ?, turnovers = ? ' +
-      'WHERE playerID = ?',
-      [points, threes, assists, blocks, steals, fgm, fga, ftm, fta, rebounds, turnovers, playerID]
-    );
-    res.redirect('/players');
+    const { 
+      playerID, points, threes, assists, blocks, steals, 
+      fgm, fga, ftm, fta, rebounds, turnovers, gamesPlayed 
+    } = req.body;
+
+    const updates = [];
+    const values = [];
+    
+    if (points !== '') {
+      updates.push('points = ?');
+      values.push(points);
+    }
+    if (threes !== '') {
+      updates.push('threes = ?');
+      values.push(threes);
+    }
+    if (assists !== '') {
+      updates.push('assists = ?');
+      values.push(assists);
+    }
+    if (blocks !== '') {
+      updates.push('blocks = ?');
+      values.push(blocks);
+    }
+    if (steals !== '') {
+      updates.push('steals = ?');
+      values.push(steals);
+    }
+    if (fgm !== '') {
+      updates.push('fgm = ?');
+      values.push(fgm);
+    }
+    if (fga !== '') {
+      updates.push('fga = ?');
+      values.push(fga);
+    }
+    if (ftm !== '') {
+      updates.push('ftm = ?');
+      values.push(ftm);
+    }
+    if (fta !== '') {
+      updates.push('fta = ?');
+      values.push(fta);
+    }
+    if (rebounds !== '') {
+      updates.push('rebounds = ?');
+      values.push(rebounds);
+    }
+    if (turnovers !== '') {
+      updates.push('turnovers = ?');
+      values.push(turnovers);
+    }
+    if (gamesPlayed !== '') {
+      updates.push('gamesPlayed = ?');
+      values.push(gamesPlayed);
+    }
+
+    if (updates.length > 0) {
+      const query = `UPDATE NBAPlayers SET ${updates.join(', ')} WHERE playerID = ?`;
+      values.push(playerID);
+      
+      await db.query(query, values);
+      res.redirect('/players');
+    } else {
+      res.status(400).send('No fields provided for update');
+    }
   } catch (err) {
     console.error(err);
     res.status(500).send('Error updating player');
