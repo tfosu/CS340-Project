@@ -35,17 +35,24 @@
 </form>
 
 <!-- UPDATE form -->
-<h2 class="mt-4">Update Leagues Won</h2>
+<h2 class="mt-4">Update Manager</h2>
 <form method="POST" action="/managers/update">
   <div class="row g-2">
     <div class="col">
-      <input name="managerID" placeholder="Manager ID" class="form-control">
+      <label class="form-label">Manager</label>
+      <select name="managerID" class="form-control" required>
+        <option value="">-- Select Manager --</option>
+        {{#each managers}}
+          <option value="{{managerID}}">{{name}} ({{leaguesWon}} leagues won)</option>
+        {{/each}}
+      </select>
     </div>
     <div class="col">
-      <input name="leaguesWon" placeholder="New Leagues Won" class="form-control">
+      <label class="form-label">New Leagues Won</label>
+      <input name="leaguesWon" type="number" class="form-control" placeholder="Leagues Won">
     </div>
-    <div class="col">
-      <button class="btn btn-warning">Update</button>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-warning">Update</button>
     </div>
   </div>
 </form>
@@ -55,10 +62,16 @@
 <form method="POST" action="/managers/delete">
   <div class="row g-2">
     <div class="col">
-      <input name="managerID" placeholder="Manager ID" class="form-control">
+      <label class="form-label">Manager</label>
+      <select name="managerID" class="form-control" required>
+        <option value="">-- Select Manager --</option>
+        {{#each managers}}
+          <option value="{{managerID}}">{{name}} ({{leaguesWon}} leagues won)</option>
+        {{/each}}
+      </select>
     </div>
-    <div class="col">
-      <button class="btn btn-danger">Delete</button>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-danger">Delete</button>
     </div>
   </div>
 </form>

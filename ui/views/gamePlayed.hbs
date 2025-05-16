@@ -27,12 +27,22 @@
 <h2>Add Game Stats</h2>
 <form method="POST" action="/gamePlayed/add">
   <div class="mb-2">
-    <label class="form-label">Game ID</label>
-    <input name="gameID" type="text" class="form-control">
+    <label class="form-label">Game</label>
+    <select name="gameID" class="form-control" required>
+      <option value="">-- Select Game --</option>
+      {{#each games}}
+        <option value="{{gameID}}">{{homeTeam}} vs {{awayTeam}} ({{date}})</option>
+      {{/each}}
+    </select>
   </div>
   <div class="mb-2">
-    <label class="form-label">Player Name</label>
-    <input name="player name" type="text" class="form-control">
+    <label class="form-label">Player</label>
+    <select name="playerID" class="form-control" required>
+      <option value="">-- Select Player --</option>
+      {{#each players}}
+        <option value="{{playerID}}">{{name}} ({{nbaTeam}})</option>
+      {{/each}}
+    </select>
   </div>
   <div class="mb-2">
     <label class="form-label">Points</label>
@@ -84,16 +94,32 @@
 <h2 class="mt-4">Update Game Stats</h2>
 <form method="POST" action="/gamePlayed/update">
   <div class="row g-2">
-    <div class="col"><input name="id" placeholder="id" class="form-control"></div>
-    <div class="col"><input name="gameID" placeholder="gameID" class="form-control"></div>
-    <div class="col"><button class="btn btn-warning">Update</button></div>
+    <div class="col">
+      <label class="form-label">Game Stats Record</label>
+      <select name="id" class="form-control" required>
+        <option value="">-- Select Game Stats --</option>
+        {{#each stats}}
+          <option value="{{id}}">{{playerName}} - {{homeTeam}} vs {{awayTeam}} ({{date}})</option>
+        {{/each}}
+      </select>
+    </div>
   </div>
 </form>
 
 <h2 class="mt-4">Delete Game Stats</h2>
 <form method="POST" action="/gamePlayed/delete">
   <div class="row g-2">
-    <div class="col"><input name="id" placeholder="id" class="form-control"></div>
-    <div class="col"><button class="btn btn-danger">Delete</button></div>
+    <div class="col">
+      <label class="form-label">Game Stats Record</label>
+      <select name="id" class="form-control" required>
+        <option value="">-- Select Game Stats --</option>
+        {{#each stats}}
+          <option value="{{id}}">{{playerName}} - {{homeTeam}} vs {{awayTeam}} ({{date}})</option>
+        {{/each}}
+      </select>
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-danger">Delete</button>
+    </div>
   </div>
 </form>

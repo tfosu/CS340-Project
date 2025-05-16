@@ -34,16 +34,39 @@
 <h2 class="mt-4">Update Game</h2>
 <form method="POST" action="/games/update">
   <div class="row g-2">
-    <div class="col"><input name="gameID" placeholder="gameID" class="form-control"></div>
-    <div class="col"><input name="date" placeholder="date" class="form-control"></div>
-    <div class="col"><button class="btn btn-warning">Update</button></div>
+    <div class="col">
+      <label class="form-label">Game</label>
+      <select name="gameID" class="form-control" required>
+        <option value="">-- Select Game --</option>
+        {{#each games}}
+          <option value="{{gameID}}">{{homeTeam}} vs {{awayTeam}} ({{date}})</option>
+        {{/each}}
+      </select>
+    </div>
+    <div class="col">
+      <label class="form-label">New Date</label>
+      <input name="date" type="date" class="form-control" required>
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-warning">Update</button>
+    </div>
   </div>
 </form>
 
 <h2 class="mt-4">Delete Game</h2>
 <form method="POST" action="/games/delete">
   <div class="row g-2">
-    <div class="col"><input name="gameID" placeholder="gameID" class="form-control"></div>
-    <div class="col"><button class="btn btn-danger">Delete</button></div>
+    <div class="col">
+      <label class="form-label">Game</label>
+      <select name="gameID" class="form-control" required>
+        <option value="">-- Select Game --</option>
+        {{#each games}}
+          <option value="{{gameID}}">{{homeTeam}} vs {{awayTeam}} ({{date}})</option>
+        {{/each}}
+      </select>
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-danger">Delete</button>
+    </div>
   </div>
 </form>

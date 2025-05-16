@@ -95,8 +95,13 @@
 <form method="POST" action="/players/update">
   <div class="row g-2">
     <div class="col">
-      <label class="form-label">Player ID</label>
-      <input name="playerID" placeholder="Player ID" class="form-control" required>
+      <label class="form-label">Player</label>
+      <select name="playerID" class="form-control" required>
+        <option value="">-- Select Player --</option>
+        {{#each players}}
+          <option value="{{playerID}}">{{name}} ({{nbaTeam}} - {{position}})</option>
+        {{/each}}
+      </select>
     </div>
   </div>
   <div class="row g-2 mt-2">
@@ -165,7 +170,17 @@
 <h2 class="mt-4">Delete Player</h2>
 <form method="POST" action="/players/delete">
   <div class="row g-2">
-    <div class="col"><input name="playerID" placeholder="playerID" class="form-control"></div>
-    <div class="col"><button class="btn btn-danger">Delete</button></div>
+    <div class="col">
+      <label class="form-label">Player</label>
+      <select name="playerID" class="form-control" required>
+        <option value="">-- Select Player --</option>
+        {{#each players}}
+          <option value="{{playerID}}">{{name}} ({{nbaTeam}} - {{position}})</option>
+        {{/each}}
+      </select>
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-danger">Delete</button>
+    </div>
   </div>
 </form>

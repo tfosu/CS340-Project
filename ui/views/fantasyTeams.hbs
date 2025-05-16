@@ -69,20 +69,25 @@
 </form>
 
 {{!-- UPDATE form --}}
-<h2 class="mt-4">Update Record</h2>
+<h2 class="mt-4">Update Team</h2>
 <form method="POST" action="/teams/update">
-  <div class="row g-2 align-items-end">
+  <div class="row g-2">
     <div class="col">
-      <label class="form-label">Team ID</label>
-      <input name="teamID" type="number" class="form-control" placeholder="Team ID" required>
+      <label class="form-label">Team</label>
+      <select name="teamID" class="form-control" required>
+        <option value="">-- Select Team --</option>
+        {{#each teams}}
+          <option value="{{teamID}}">{{name}} ({{leagueName}} - {{managerName}})</option>
+        {{/each}}
+      </select>
     </div>
     <div class="col">
       <label class="form-label">Wins</label>
-      <input name="wins" type="number" class="form-control" placeholder="Wins" min="0" required>
+      <input name="wins" type="number" class="form-control" placeholder="Wins">
     </div>
     <div class="col">
       <label class="form-label">Losses</label>
-      <input name="losses" type="number" class="form-control" placeholder="Losses" min="0" required>
+      <input name="losses" type="number" class="form-control" placeholder="Losses">
     </div>
     <div class="col-auto">
       <button type="submit" class="btn btn-warning">Update</button>
@@ -93,10 +98,15 @@
 {{!-- DELETE form --}}
 <h2 class="mt-4">Delete Team</h2>
 <form method="POST" action="/teams/delete">
-  <div class="row g-2 align-items-end">
+  <div class="row g-2">
     <div class="col">
-      <label class="form-label">Team ID</label>
-      <input name="teamID" type="number" class="form-control" placeholder="Team ID" required>
+      <label class="form-label">Team</label>
+      <select name="teamID" class="form-control" required>
+        <option value="">-- Select Team --</option>
+        {{#each teams}}
+          <option value="{{teamID}}">{{name}} ({{leagueName}} - {{managerName}})</option>
+        {{/each}}
+      </select>
     </div>
     <div class="col-auto">
       <button type="submit" class="btn btn-danger">Delete</button>

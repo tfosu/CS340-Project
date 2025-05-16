@@ -21,19 +21,42 @@
   <button class="btn btn-primary">Submit</button>
 </form>
 
-<h2 class="mt-4">Update Fantasy Leagues</h2>
+<h2 class="mt-4">Update League</h2>
 <form method="POST" action="/leagues/update">
   <div class="row g-2">
-    <div class="col"><input name="leagueID" placeholder="leagueID" class="form-control"></div>
-    <div class="col"><input name="name" placeholder="name" class="form-control"></div>
-    <div class="col"><button class="btn btn-warning">Update</button></div>
+    <div class="col">
+      <label class="form-label">League</label>
+      <select name="leagueID" class="form-control" required>
+        <option value="">-- Select League --</option>
+        {{#each leagues}}
+          <option value="{{leagueID}}">{{name}}</option>
+        {{/each}}
+      </select>
+    </div>
+    <div class="col">
+      <label class="form-label">New Name</label>
+      <input name="name" type="text" class="form-control" placeholder="League Name">
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-warning">Update</button>
+    </div>
   </div>
 </form>
 
-<h2 class="mt-4">Delete Fantasy Leagues</h2>
+<h2 class="mt-4">Delete League</h2>
 <form method="POST" action="/leagues/delete">
   <div class="row g-2">
-    <div class="col"><input name="leagueID" placeholder="leagueID" class="form-control"></div>
-    <div class="col"><button class="btn btn-danger">Delete</button></div>
+    <div class="col">
+      <label class="form-label">League</label>
+      <select name="leagueID" class="form-control" required>
+        <option value="">-- Select League --</option>
+        {{#each leagues}}
+          <option value="{{leagueID}}">{{name}}</option>
+        {{/each}}
+      </select>
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-danger">Delete</button>
+    </div>
   </div>
 </form>

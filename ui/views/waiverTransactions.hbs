@@ -16,39 +16,81 @@
 </table>
 
 <h2>Add Waiver Transaction</h2>
-<form method="POST" action="/waiverTransactions/add">
+<form method="POST" action="/waivers/add">
   <div class="mb-2">
-    <label class="form-label">Team ID</label>
-    <input name="teamID" type="text" class="form-control">
+    <label class="form-label">Team</label>
+    <select name="teamID" class="form-control" required>
+      <option value="">-- Select Team --</option>
+      {{#each teams}}
+        <option value="{{teamID}}">{{name}} ({{leagueName}} - {{managerName}})</option>
+      {{/each}}
+    </select>
   </div>
   <div class="mb-2">
-    <label class="form-label">Player ID</label>
-    <input name="playerID" type="text" class="form-control">
+    <label class="form-label">Player</label>
+    <select name="playerID" class="form-control" required>
+      <option value="">-- Select Player --</option>
+      {{#each players}}
+        <option value="{{playerID}}">{{name}} ({{nbaTeam}} - {{position}})</option>
+      {{/each}}
+    </select>
   </div>
   <div class="mb-2">
     <label class="form-label">Transaction Type</label>
-    <input name="transactionType" type="text" class="form-control">
+    <select name="transactionType" class="form-control" required>
+      <option value="">-- Select Type --</option>
+      <option value="Add">Add</option>
+      <option value="Drop">Drop</option>
+      <option value="Trade">Trade</option>
+    </select>
   </div>
   <div class="mb-2">
     <label class="form-label">Transaction Date</label>
-    <input name="transactionDate" type="date" class="form-control">
+    <input name="transactionDate" type="date" class="form-control" required>
   </div>
-  <button class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
-<h2 class="mt-4">Update Waiver Transaction</h2>
-<form method="POST" action="/waiverTransactions/update">
+<h2 class="mt-4">Update Transaction</h2>
+<form method="POST" action="/waivers/update">
   <div class="row g-2">
-    <div class="col"><input name="transactionID" placeholder="transactionID" class="form-control"></div>
-    <div class="col"><input name="teamID" placeholder="teamID" class="form-control"></div>
-    <div class="col"><button class="btn btn-warning">Update</button></div>
+    <div class="col">
+      <label class="form-label">Transaction</label>
+      <select name="transactionID" class="form-control" required>
+        <option value="">-- Select Transaction --</option>
+        {{#each waivers}}
+          <option value="{{transactionID}}">{{playerName}} - {{transactionType}} by {{teamName}} ({{transactionDate}})</option>
+        {{/each}}
+      </select>
+    </div>
+    <div class="col">
+      <label class="form-label">New Transaction Type</label>
+      <select name="transactionType" class="form-control" required>
+        <option value="Add">Add</option>
+        <option value="Drop">Drop</option>
+        <option value="Trade">Trade</option>
+      </select>
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-warning">Update</button>
+    </div>
   </div>
 </form>
 
-<h2 class="mt-4">Delete Waiver Transaction</h2>
-<form method="POST" action="/waiverTransactions/delete">
+<h2 class="mt-4">Delete Transaction</h2>
+<form method="POST" action="/waivers/delete">
   <div class="row g-2">
-    <div class="col"><input name="transactionID" placeholder="transactionID" class="form-control"></div>
-    <div class="col"><button class="btn btn-danger">Delete</button></div>
+    <div class="col">
+      <label class="form-label">Transaction</label>
+      <select name="transactionID" class="form-control" required>
+        <option value="">-- Select Transaction --</option>
+        {{#each waivers}}
+          <option value="{{transactionID}}">{{playerName}} - {{transactionType}} by {{teamName}} ({{transactionDate}})</option>
+        {{/each}}
+      </select>
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-danger">Delete</button>
+    </div>
   </div>
 </form>

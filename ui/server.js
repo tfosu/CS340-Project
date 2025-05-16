@@ -364,41 +364,51 @@ app.post('/games/delete', async (req, res) => {
 
 // GamePlayed
 app.get('/gameplayed', async (req, res) => {
-    try {
-      const [stats] = await db.query(
-        `SELECT
-           gp.id,
-           gp.gameID,
-           p.name       AS playerName,
-           gp.points,
-           gp.threes,
-           gp.assists,
-           gp.blocks,
-           gp.steals,
-           gp.fgm,
-           gp.fga,
-           gp.ftm,
-           gp.fta,
-           gp.rebounds,
-           gp.turnovers
-         FROM GamePlayed gp
-         JOIN NBAPlayers p ON gp.playerID = p.playerID;`
-      );
-  
-      const [games]   = await db.query(
-        `SELECT gameID, DATE_FORMAT(date, '%Y-%m-%d') AS date
-           FROM NBAGames;`
-      );
-      const [players] = await db.query(
-        `SELECT playerID, name FROM NBAPlayers;`
-      );
-  
-      res.render('gamePlayed', { title: 'Games Played', stats, games, players });
-    } catch (err) {
-      console.error(err);
-      res.status(500).send('Error loading Games Played');
-    }
-  });
+  try {
+    const [stats] = await db.query(
+      `SELECT
+         gp.id,
+         gp.gameID,
+         p.name       AS playerName,
+         gp.points,
+         gp.threes,
+         gp.assists,
+         gp.blocks,
+         gp.steals,
+         gp.fgm,
+         gp.fga,
+         gp.ftm,
+         gp.fta,
+         gp.rebounds,
+         gp.turnovers
+       FROM GamePlayed gp
+       JOIN NBAPlayers p ON gp.playerID = p.playerID;`
+    );
+
+    const [games] = await db.query(
+      `SELECT 
+         g.gameID, 
+         DATE_FORMAT(g.date, '%Y-%m-%d') AS date,
+         g.homeTeam,
+         g.awayTeam
+       FROM NBAGames g;`
+    );
+    
+    const [players] = await db.query(
+      `SELECT playerID, name, nbaTeam FROM NBAPlayers;`
+    );
+
+    res.render('gamePlayed', { 
+      title: 'Games Played', 
+      stats, 
+      games, 
+      players 
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error loading Games Played');
+  }
+});
   
 app.post('/gameplayed/add', async (req, res) => {
   try {
@@ -443,10 +453,42 @@ app.post('/gameplayed/delete', async (req, res) => {
 // RosteredPlayers
 app.get('/rostered', async (req, res) => {
   try {
-    const [rows] = await db.query(
-      'SELECT id, teamID, playerID, dateAdded, isStarter FROM RosteredPlayers;'
-    );
-    res.render('rosteredPlayers', { title: 'Rostered Players', roster: rows });
+    const [roster] = await db.query(`
+      SELECT 
+        r.id,
+        r.teamID,
+        r.playerID,
+        r.dateAdded,
+        r.isStarter,
+        p.name AS playerName,
+        t.name AS teamName
+      FROM RosteredPlayers r
+      JOIN NBAPlayers p ON r.playerID = p.playerID
+      JOIN FantasyTeams t ON r.teamID = t.teamID;
+    `);
+
+    const [teams] = await db.query(`
+      SELECT 
+        t.teamID,
+        t.name,
+        l.name AS leagueName,
+        m.name AS managerName
+      FROM FantasyTeams t
+      JOIN FantasyLeagues l ON t.leagueID = l.leagueID
+      JOIN FantasyManagers m ON t.managerID = m.managerID;
+    `);
+
+    const [players] = await db.query(`
+      SELECT playerID, name, nbaTeam, position 
+      FROM NBAPlayers;
+    `);
+
+    res.render('rosteredPlayers', { 
+      title: 'Rostered Players', 
+      roster,
+      teams,
+      players
+    });
   } catch (err) {
     console.error(err);
     res.status(500).send('Error loading roster');
@@ -505,10 +547,42 @@ app.post('/rostered/delete', async (req, res) => {
 // WaiverTransactions
 app.get('/waivers', async (req, res) => {
   try {
-    const [rows] = await db.query(
-      'SELECT transactionID, teamID, playerID, transactionType, transactionDate FROM WaiverTransactions;'
-    );
-    res.render('waiverTransactions', { title: 'Waiver Transactions', waivers: rows });
+    const [waivers] = await db.query(`
+      SELECT 
+        w.transactionID,
+        w.teamID,
+        w.playerID,
+        w.transactionType,
+        w.transactionDate,
+        p.name AS playerName,
+        t.name AS teamName
+      FROM WaiverTransactions w
+      JOIN NBAPlayers p ON w.playerID = p.playerID
+      JOIN FantasyTeams t ON w.teamID = t.teamID;
+    `);
+
+    const [teams] = await db.query(`
+      SELECT 
+        t.teamID,
+        t.name,
+        l.name AS leagueName,
+        m.name AS managerName
+      FROM FantasyTeams t
+      JOIN FantasyLeagues l ON t.leagueID = l.leagueID
+      JOIN FantasyManagers m ON t.managerID = m.managerID;
+    `);
+
+    const [players] = await db.query(`
+      SELECT playerID, name, nbaTeam, position 
+      FROM NBAPlayers;
+    `);
+
+    res.render('waiverTransactions', { 
+      title: 'Waiver Transactions', 
+      waivers,
+      teams,
+      players
+    });
   } catch (err) {
     console.error(err);
     res.status(500).send('Error loading waivers');

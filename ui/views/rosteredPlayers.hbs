@@ -28,12 +28,22 @@
 <h2>Add Rostered Player</h2>
 <form method="POST" action="/rostered/add">
   <div class="mb-2">
-    <label class="form-label">Team ID</label>
-    <input name="teamID" type="number" class="form-control" required>
+    <label class="form-label">Team</label>
+    <select name="teamID" class="form-control" required>
+      <option value="">-- Select Team --</option>
+      {{#each teams}}
+        <option value="{{teamID}}">{{name}} ({{leagueName}} - {{managerName}})</option>
+      {{/each}}
+    </select>
   </div>
   <div class="mb-2">
-    <label class="form-label">Player ID</label>
-    <input name="playerID" type="number" class="form-control" required>
+    <label class="form-label">Player</label>
+    <select name="playerID" class="form-control" required>
+      <option value="">-- Select Player --</option>
+      {{#each players}}
+        <option value="{{playerID}}">{{name}} ({{nbaTeam}} - {{position}})</option>
+      {{/each}}
+    </select>
   </div>
   <div class="mb-2">
     <label class="form-label">Date Added</label>
@@ -48,20 +58,24 @@
 </form>
 
 <!-- UPDATE form -->
-<h2 class="mt-4">Update Starter Status</h2>
+<h2 class="mt-4">Update Roster</h2>
 <form method="POST" action="/rostered/update">
-  <div class="row g-2 align-items-end">
+  <div class="row g-2">
     <div class="col">
-      <label class="form-label">Record ID</label>
-      <input name="id" type="number" class="form-control" placeholder="ID" required>
+      <label class="form-label">Roster Entry</label>
+      <select name="id" class="form-control" required>
+        <option value="">-- Select Roster Entry --</option>
+        {{#each roster}}
+          <option value="{{id}}">{{playerName}} on {{teamName}} ({{dateAdded}})</option>
+        {{/each}}
+      </select>
     </div>
     <div class="col">
-      <label class="form-label">Starter?</label>
-      <div class="form-check">
-        <input type="hidden" name="isStarter" value="0">
-        <input class="form-check-input" type="checkbox" name="isStarter" value="1" id="updateStarterCheck">
-        <label class="form-check-label" for="updateStarterCheck">Yes</label>
-      </div>
+      <label class="form-label">Starter Status</label>
+      <select name="isStarter" class="form-control" required>
+        <option value="1">Starter</option>
+        <option value="0">Bench</option>
+      </select>
     </div>
     <div class="col-auto">
       <button type="submit" class="btn btn-warning">Update</button>
@@ -70,12 +84,17 @@
 </form>
 
 <!-- DELETE form -->
-<h2 class="mt-4">Delete Rostered Player</h2>
+<h2 class="mt-4">Delete Roster Entry</h2>
 <form method="POST" action="/rostered/delete">
-  <div class="row g-2 align-items-end">
+  <div class="row g-2">
     <div class="col">
-      <label class="form-label">Record ID</label>
-      <input name="id" type="number" class="form-control" placeholder="ID" required>
+      <label class="form-label">Roster Entry</label>
+      <select name="id" class="form-control" required>
+        <option value="">-- Select Roster Entry --</option>
+        {{#each roster}}
+          <option value="{{id}}">{{playerName}} on {{teamName}} ({{dateAdded}})</option>
+        {{/each}}
+      </select>
     </div>
     <div class="col-auto">
       <button type="submit" class="btn btn-danger">Delete</button>
