@@ -1,0 +1,84 @@
+<h1>Rostered Players</h1>
+
+<!-- SELECT table -->
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Team ID</th>
+      <th>Player ID</th>
+      <th>Date Added</th>
+      <th>Starter?</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each roster}}
+      <tr>
+        <td>{{id}}</td>
+        <td>{{teamID}}</td>
+        <td>{{playerID}}</td>
+        <td>{{dateAdded}}</td>
+        <td>{{#if isStarter}}Yes{{else}}No{{/if}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+<!-- INSERT form -->
+<h2>Add Rostered Player</h2>
+<form method="POST" action="/rostered/add">
+  <div class="mb-2">
+    <label class="form-label">Team ID</label>
+    <input name="teamID" type="number" class="form-control" required>
+  </div>
+  <div class="mb-2">
+    <label class="form-label">Player ID</label>
+    <input name="playerID" type="number" class="form-control" required>
+  </div>
+  <div class="mb-2">
+    <label class="form-label">Date Added</label>
+    <input name="dateAdded" type="date" class="form-control" required>
+  </div>
+  <div class="form-check mb-2">
+    <input type="hidden" name="isStarter" value="0">
+    <input class="form-check-input" type="checkbox" name="isStarter" value="1" id="isStarterCheck">
+    <label class="form-check-label" for="isStarterCheck">Starter?</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Add</button>
+</form>
+
+<!-- UPDATE form -->
+<h2 class="mt-4">Update Starter Status</h2>
+<form method="POST" action="/rostered/update">
+  <div class="row g-2 align-items-end">
+    <div class="col">
+      <label class="form-label">Record ID</label>
+      <input name="id" type="number" class="form-control" placeholder="ID" required>
+    </div>
+    <div class="col">
+      <label class="form-label">Starter?</label>
+      <div class="form-check">
+        <input type="hidden" name="isStarter" value="0">
+        <input class="form-check-input" type="checkbox" name="isStarter" value="1" id="updateStarterCheck">
+        <label class="form-check-label" for="updateStarterCheck">Yes</label>
+      </div>
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-warning">Update</button>
+    </div>
+  </div>
+</form>
+
+<!-- DELETE form -->
+<h2 class="mt-4">Delete Rostered Player</h2>
+<form method="POST" action="/rostered/delete">
+  <div class="row g-2 align-items-end">
+    <div class="col">
+      <label class="form-label">Record ID</label>
+      <input name="id" type="number" class="form-control" placeholder="ID" required>
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-danger">Delete</button>
+    </div>
+  </div>
+</form>

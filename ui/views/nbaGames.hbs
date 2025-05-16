@@ -1,0 +1,44 @@
+<h1>Games</h1>
+
+<table class="table table-bordered">
+  <thead><tr><th>gameID</th><th>date</th><th>homeTeam</th><th>awayTeam</th></tr></thead>
+  <tbody>
+  {{#each games}}
+    <tr><td>{{gameID}}</td><td>{{date}}</td><td>{{homeTeam}}</td><td>{{awayTeam}}</td></tr>
+  {{/each}}
+  </tbody>
+</table>
+
+<h2>Add games</h2>
+<form method="POST" action="/games/add">
+  <div class="mb-2">
+    <label class="form-label">date</label>
+    <input name="date" type="date" class="form-control">
+  </div>
+  <div class="mb-2">
+    <label class="form-label">homeTeam</label>
+    <input name="homeTeam" type="text" class="form-control">
+  </div>
+  <div class="mb-2">
+    <label class="form-label">awayTeam</label>
+    <input name="awayTeam" type="text" class="form-control">
+  </div>
+  <button class="btn btn-primary">Submit</button>
+</form>
+
+<h2 class="mt-4">Update games</h2>
+<form method="POST" action="/games/update">
+  <div class="row g-2">
+    <div class="col"><input name="gameID" placeholder="gameID" class="form-control"></div>
+    <div class="col"><input name="date" placeholder="date" class="form-control"></div>
+    <div class="col"><button class="btn btn-warning">Update</button></div>
+  </div>
+</form>
+
+<h2 class="mt-4">Delete games</h2>
+<form method="POST" action="/games/delete">
+  <div class="row g-2">
+    <div class="col"><input name="gameID" placeholder="gameID" class="form-control"></div>
+    <div class="col"><button class="btn btn-danger">Delete</button></div>
+  </div>
+</form>

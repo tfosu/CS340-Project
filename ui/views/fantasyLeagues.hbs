@@ -1,0 +1,36 @@
+<h1>Fantasy Leagues</h1>
+
+<table class="table table-bordered">
+  <thead><tr><th>leagueID</th><th>name</th></tr></thead>
+  <tbody>
+  {{#each leagues}}
+    <tr><td>{{leagueID}}</td><td>{{name}}</td></tr>
+  {{/each}}
+  </tbody>
+</table>
+
+<h2>Add Fantasy Leagues</h2>
+<form method="POST" action="/leagues/add">
+  <div class="mb-2">
+    <label class="form-label">name</label>
+    <input name="name" type="text" class="form-control">
+  </div>
+  <button class="btn btn-primary">Submit</button>
+</form>
+
+<h2 class="mt-4">Update Fantasy Leagues</h2>
+<form method="POST" action="/leagues/update">
+  <div class="row g-2">
+    <div class="col"><input name="leagueID" placeholder="leagueID" class="form-control"></div>
+    <div class="col"><input name="name" placeholder="name" class="form-control"></div>
+    <div class="col"><button class="btn btn-warning">Update</button></div>
+  </div>
+</form>
+
+<h2 class="mt-4">Delete Fantasy Leagues</h2>
+<form method="POST" action="/leagues/delete">
+  <div class="row g-2">
+    <div class="col"><input name="leagueID" placeholder="leagueID" class="form-control"></div>
+    <div class="col"><button class="btn btn-danger">Delete</button></div>
+  </div>
+</form>

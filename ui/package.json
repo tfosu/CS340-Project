@@ -1,0 +1,27 @@
+{
+    "name": "cs340_project_fantasy_basketball",
+    "version": "1.0.0",
+    "description": "CS 340 Project: Fantasy Basketball",
+    "main": "index.js",
+    "scripts": {
+        "dev": "nodemon server.js",
+        "prod":  "forever start server.js",
+        "stop":   "forever stop server.js"
+      },
+    "author": "Ashby Lshin, Jakob Jensen, Trevor Foote",
+    "license": "ISC",
+    "dependencies": {
+      "express": "^4.21.2",
+      "express-handlebars": "^7.1.2",
+      "mysql2": "^3.12.0",
+      "forever": "^4.0.3",
+      "nodemon": "^3.1.10"
+    },
+    "devDependencies": {
+      "nodemon": "^3.1.9",
+      "forever": "^4.0.3"
+    }
+  }
+  
+  
+    

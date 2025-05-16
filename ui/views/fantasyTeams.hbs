@@ -1,0 +1,105 @@
+{{!-- views/fantasyTeams.hbs --}}
+<h1>Fantasy Teams</h1>
+
+{{!-- SELECT table --}}
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Team ID</th>
+      <th>Name</th>
+      <th>Wins</th>
+      <th>Losses</th>
+      <th>League</th>
+      <th>Manager</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each teams}}
+      <tr>
+        <td>{{teamID}}</td>
+        <td>{{name}}</td>
+        <td>{{wins}}</td>
+        <td>{{losses}}</td>
+        <td>{{leagueName}}</td>
+        <td>{{managerName}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+{{!-- INSERT form --}}
+<h2>Add Team</h2>
+<form method="POST" action="/teams/add">
+  <div class="mb-2">
+    <label class="form-label">Name</label>
+    <input name="name" type="text" class="form-control" required>
+  </div>
+
+  <div class="mb-2">
+    <label class="form-label">Wins</label>
+    <input name="wins" type="number" class="form-control" value="0" min="0" required>
+  </div>
+
+  <div class="mb-2">
+    <label class="form-label">Losses</label>
+    <input name="losses" type="number" class="form-control" value="0" min="0" required>
+  </div>
+
+  <div class="mb-2">
+    <label class="form-label">League</label>
+    <select name="leagueID" class="form-control" required>
+      <option value="">-- select league --</option>
+      {{#each leagues}}
+        <option value="{{leagueID}}">{{name}} (ID {{leagueID}})</option>
+      {{/each}}
+    </select>
+  </div>
+
+  <div class="mb-2">
+    <label class="form-label">Manager</label>
+    <select name="managerID" class="form-control" required>
+      <option value="">-- select manager --</option>
+      {{#each managers}}
+        <option value="{{managerID}}">{{name}} (ID {{managerID}})</option>
+      {{/each}}
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Add Team</button>
+</form>
+
+{{!-- UPDATE form --}}
+<h2 class="mt-4">Update Record</h2>
+<form method="POST" action="/teams/update">
+  <div class="row g-2 align-items-end">
+    <div class="col">
+      <label class="form-label">Team ID</label>
+      <input name="teamID" type="number" class="form-control" placeholder="Team ID" required>
+    </div>
+    <div class="col">
+      <label class="form-label">Wins</label>
+      <input name="wins" type="number" class="form-control" placeholder="Wins" min="0" required>
+    </div>
+    <div class="col">
+      <label class="form-label">Losses</label>
+      <input name="losses" type="number" class="form-control" placeholder="Losses" min="0" required>
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-warning">Update</button>
+    </div>
+  </div>
+</form>
+
+{{!-- DELETE form --}}
+<h2 class="mt-4">Delete Team</h2>
+<form method="POST" action="/teams/delete">
+  <div class="row g-2 align-items-end">
+    <div class="col">
+      <label class="form-label">Team ID</label>
+      <input name="teamID" type="number" class="form-control" placeholder="Team ID" required>
+    </div>
+    <div class="col-auto">
+      <button type="submit" class="btn btn-danger">Delete</button>
+    </div>
+  </div>
+</form>

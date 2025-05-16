@@ -1,0 +1,48 @@
+<h1>waiverTransactions</h1>
+
+<table class="table table-bordered">
+  <thead><tr><th>transactionID</th><th>teamID</th><th>playerID</th><th>transactionType</th><th>transactionDate</th></tr></thead>
+  <tbody>
+  {{#each waivers}}
+    <tr><td>{{transactionID}}</td><td>{{teamID}}</td><td>{{playerID}}</td><td>{{transactionType}}</td><td>{{transactionDate}}</td></tr>
+  {{/each}}
+  </tbody>
+</table>
+
+<h2>Add waiverTransactions</h2>
+<form method="POST" action="/waiverTransactions/add">
+  <div class="mb-2">
+    <label class="form-label">teamID</label>
+    <input name="teamID" type="text" class="form-control">
+  </div>
+  <div class="mb-2">
+    <label class="form-label">playerID</label>
+    <input name="playerID" type="text" class="form-control">
+  </div>
+  <div class="mb-2">
+    <label class="form-label">transactionType</label>
+    <input name="transactionType" type="text" class="form-control">
+  </div>
+  <div class="mb-2">
+    <label class="form-label">transactionDate</label>
+    <input name="transactionDate" type="date" class="form-control">
+  </div>
+  <button class="btn btn-primary">Submit</button>
+</form>
+
+<h2 class="mt-4">Update waiverTransactions</h2>
+<form method="POST" action="/waiverTransactions/update">
+  <div class="row g-2">
+    <div class="col"><input name="transactionID" placeholder="transactionID" class="form-control"></div>
+    <div class="col"><input name="teamID" placeholder="teamID" class="form-control"></div>
+    <div class="col"><button class="btn btn-warning">Update</button></div>
+  </div>
+</form>
+
+<h2 class="mt-4">Delete waiverTransactions</h2>
+<form method="POST" action="/waiverTransactions/delete">
+  <div class="row g-2">
+    <div class="col"><input name="transactionID" placeholder="transactionID" class="form-control"></div>
+    <div class="col"><button class="btn btn-danger">Delete</button></div>
+  </div>
+</form>

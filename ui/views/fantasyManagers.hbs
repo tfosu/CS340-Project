@@ -1,0 +1,64 @@
+<h1>Fantasy Managers</h1>
+
+<!-- SELECT table -->
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Leagues Won</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each managers}}
+      <tr>
+        <td>{{managerID}}</td>
+        <td>{{name}}</td>
+        <td>{{leaguesWon}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+<!-- INSERT form -->
+<h2>Add Manager</h2>
+<form method="POST" action="/managers/add">
+  <div class="mb-2">
+    <label class="form-label">Name</label>
+    <input name="name" class="form-control">
+  </div>
+  <div class="mb-2">
+    <label class="form-label">Leagues Won</label>
+    <input name="leaguesWon" type="number" class="form-control">
+  </div>
+  <button class="btn btn-primary">Submit</button>
+</form>
+
+<!-- UPDATE form -->
+<h2 class="mt-4">Update Leagues Won</h2>
+<form method="POST" action="/managers/update">
+  <div class="row g-2">
+    <div class="col">
+      <input name="managerID" placeholder="Manager ID" class="form-control">
+    </div>
+    <div class="col">
+      <input name="leaguesWon" placeholder="New Leagues Won" class="form-control">
+    </div>
+    <div class="col">
+      <button class="btn btn-warning">Update</button>
+    </div>
+  </div>
+</form>
+
+<!-- DELETE form -->
+<h2 class="mt-4">Delete Manager</h2>
+<form method="POST" action="/managers/delete">
+  <div class="row g-2">
+    <div class="col">
+      <input name="managerID" placeholder="Manager ID" class="form-control">
+    </div>
+    <div class="col">
+      <button class="btn btn-danger">Delete</button>
+    </div>
+  </div>
+</form>
