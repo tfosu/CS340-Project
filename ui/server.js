@@ -14,6 +14,17 @@ app.get('/', (req, res) => {
   res.render('index', { title: 'Home' });
 });
 
+// Reset Database
+app.get('/reset', async (req, res) => {
+  try {
+    await db.query('CALL ResetDatabase();');
+    res.redirect('/');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error resetting database');
+  }
+});
+
 // FantasyManagers
 app.get('/managers', async (req, res) => {
   try {
